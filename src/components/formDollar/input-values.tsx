@@ -1,6 +1,6 @@
 'use client';
 import { Colors } from "@/enums/colors";
-import { useCurrencyData } from "@/hooks/currency/useCurrencyData";
+import { useCurrencyData } from "@/hooks/useCurrencyData";
 import styled from "styled-components";
 
 type InputValuesProps = {
@@ -34,12 +34,17 @@ const Input = styled.input`
 `;
 
 export default function InputValues({ textLabel, enabled }: InputValuesProps) {
-    const {data, isLoading, isError, error} = useCurrencyData();
-    
+    // const {data} = useCurrencyData();
+
+    // if (!data) {
+    //     // Se os dados ainda não estiverem disponíveis, retorne null ou um indicador de carregamento
+    //     return null; // ou um indicador de carregamento
+    // }
+
     return (
         <Container>
             <Label htmlFor="textInput">{textLabel}</Label>
-            <Input type="text" name="textInput" readOnly={enabled}/>
+            <Input type="text" name="textInput" readOnly={enabled} />
         </Container>
     );
 };

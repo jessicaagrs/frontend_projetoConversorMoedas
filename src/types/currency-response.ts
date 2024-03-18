@@ -1,4 +1,4 @@
-export interface CurrencyReponse {
+export interface Currency{
     ask: string;
     bid: string;
     code: string;
@@ -11,3 +11,8 @@ export interface CurrencyReponse {
     timestamp: string;
     varBid: string;
 }
+
+export interface CurrencyResponse{
+    USDBRL: Currency;
+}
+

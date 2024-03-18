@@ -3,6 +3,8 @@
 import { ButtonConverterIcon } from "@/components/formDollar/converter-button-icon";
 import FilterTypeBuy from "@/components/formDollar/filter-type-buy";
 import InputValues from "@/components/formDollar/input-values";
+import useCurrency from "@/hooks/useCurrency";
+import { useCurrencyData } from "@/hooks/useCurrencyData";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 

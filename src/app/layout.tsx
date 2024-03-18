@@ -3,7 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Body from "@/components/body/body";
 import NavBar from "@/components/navbar/navbar";
-import { CurrencyContextProvider } from "@/contexts/currency-context";
+import DefaultProvider from "@/contexts/default-provider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -22,13 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CurrencyContextProvider>
+    <DefaultProvider>
       <html lang="pt-Br" className={roboto.className}>
         <Body>
           <NavBar />
           {children}
         </Body>
       </html>
-    </CurrencyContextProvider>
+    </DefaultProvider>
   );
 }
