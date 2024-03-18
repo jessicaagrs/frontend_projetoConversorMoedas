@@ -1,6 +1,8 @@
 'use client';
 import styled from "styled-components";
 import image from "../../../public/Mask.png";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CurrencyContext } from "@/contexts/currency-context";
 
 
 const BodyBackground = styled.body`
@@ -12,10 +14,14 @@ const BodyBackground = styled.body`
     overflow: hidden;
     margin-left: 5rem;
 `;
-export default function Body(props: { children: React.ReactNode }) {
+
+const client = new QueryClient();
+export default function Body(props: { children: React.ReactNode; }) {
     return (
-        <BodyBackground>
-            {props.children}
-        </BodyBackground>
+        <QueryClientProvider client={client}>
+            <BodyBackground>
+                {props.children}
+            </BodyBackground>
+        </QueryClientProvider>
     );
 };
