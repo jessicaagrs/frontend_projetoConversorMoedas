@@ -41,7 +41,7 @@ const LabelRadio = styled.label`
 `;
 
 export default function FilterTypeBuy() {
-    const [checkedMoney, setCheckedMoney] = useState(false);
+    const [checkedMoney, setCheckedMoney] = useState(true);
     const [checkedCard, setCheckedCard] = useState(false);
     const { setTypeBuy } = useCurrency();
 
@@ -68,16 +68,16 @@ export default function FilterTypeBuy() {
                     aria-label="Radio Money"
                     onClick={handleClick}
                     style={{
-                        backgroundColor: checkedMoney ? Colors.BACKGROUND_RADIO_BUTTON : '#fff',
-                        border: checkedMoney ? '2px solid' + Colors.TEXT_MESSAGE : '2px solid ' + Colors.BACKGROUND_RADIO_BUTTON
+                        backgroundColor: checkedMoney ? Colors.BACKGROUND_BUTTON : '#fff',
+                        border: checkedMoney ? '2px solid' + Colors.TEXT_MESSAGE : '2px solid ' + Colors.BACKGROUND_BUTTON
                     }} />
                 <LabelRadio>Dinheiro</LabelRadio>
                 <InputRadio
                     aria-label="Radio Card"
                     onClick={handleClick}
                     style={{
-                        backgroundColor: checkedCard ? Colors.BACKGROUND_RADIO_BUTTON : '#fff',
-                        border: checkedCard ? '2px solid' + Colors.TEXT_MESSAGE : '2px solid ' + Colors.BACKGROUND_RADIO_BUTTON
+                        backgroundColor: checkedCard ? Colors.BACKGROUND_BUTTON : '#fff',
+                        border: checkedCard ? '2px solid' + Colors.TEXT_MESSAGE : '2px solid ' + Colors.BACKGROUND_BUTTON
                     }} />
                 <LabelRadio>Cartão</LabelRadio>
             </ContainerRadios>

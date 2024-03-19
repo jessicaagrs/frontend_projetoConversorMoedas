@@ -53,12 +53,39 @@ const Input = styled.input`
     `}
 `;
 
+const Button = styled.button`
+    width: 150px;
+    height: 45px;
+    margin-top: 2rem;
+    color: #fff;
+    background-color: ${Colors.BACKGROUND_BUTTON};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid ${Colors.BORDER_BUTTON};
+
+    &:hover {
+      background-color: ${Colors.TEXT_VALUE_INPUT};
+      border: 1px solid ${Colors.BACKGROUND_BUTTON};
+    }
+`;
+
 export default function Home() {
   const router = useRouter();
-  const { exchangeRate, dollarValue, setDollarValue, setExchangeRate } = useCurrency();
+  const { exchangeRate, dollarValue, setDollarValue } = useCurrency();
 
   const handleConverterClick = () => {
-    router.push("/result");
+    try {
+      if (dollarValue === '') throw new Error('Por favor, informe o valor em dólar para converter.');
+
+      router.push("/result");
+
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -76,10 +103,10 @@ export default function Home() {
       <section>
         <FilterTypeBuy />
       </section>
-      <button onClick={handleConverterClick}>
+      <Button onClick={handleConverterClick}>
         <ButtonConverterIcon />
         Converter
-      </button>
+      </Button>
     </main>
   );
 }
