@@ -4,7 +4,7 @@ import { ButtonConverterIcon } from "@/components/formDollar/converter-button-ic
 import FilterTypeBuy from "@/components/formDollar/filter-type-buy";
 import { Colors } from "@/enums/colors";
 import useCurrency from "@/hooks/useCurrency";
-import FormatterNumber from "@/utils/formatter";
+import { FormatterNumberInReal, MaskCurrencyInDollar } from "@/utils/formatter";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
@@ -55,7 +55,7 @@ const Input = styled.input`
 
 export default function Home() {
   const router = useRouter();
-  const { exchangeRate } = useCurrency();
+  const { exchangeRate, dollarValue, setDollarValue, setExchangeRate } = useCurrency();
 
   const handleConverterClick = () => {
     router.push("/result");
@@ -66,11 +66,11 @@ export default function Home() {
       <SectionInputValues>
         <Container>
           <Label htmlFor="textInputDollar">Dólar</Label>
-          <Input type="text" name="textInputDollar" readOnly={false} />
+          <Input type="text" name="textInputDollar" readOnly={false} value={dollarValue} onChange={(e) => setDollarValue(MaskCurrencyInDollar(e.target.value, "dollar"))} />
         </Container>
         <Container>
           <Label htmlFor="textInputTax">Taxa de Câmbio</Label>
-          <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumber(exchangeRate)} />
+          <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumberInReal(exchangeRate)} />
         </Container>
       </SectionInputValues>
       <section>
