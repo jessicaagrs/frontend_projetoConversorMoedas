@@ -2,6 +2,8 @@
 import LogoNavBar from "./navbar-logo";
 import styled from "styled-components";
 import { Colors } from "@/enums/colors";
+import useCurrency from "@/hooks/useCurrency";
+import { FormatData } from "@/utils/formatter";
 
 const SpanDate = styled.span`
     font-size: 18px;
@@ -31,12 +33,15 @@ const NavContainer = styled.div`
 `;
 
 export default function NavBar() {
+    const {updateDate} = useCurrency();
+
+    const currentDate = FormatData(updateDate)
 
     return (
         <Nav>
             <LogoNavBar />
             <NavContainer>
-                <SpanDate></SpanDate>
+                <SpanDate>{currentDate}</SpanDate>
                 <SpanMessage>Dados de câmbio disponibilizados pela Morningstar.</SpanMessage>
             </NavContainer>
         </Nav>
