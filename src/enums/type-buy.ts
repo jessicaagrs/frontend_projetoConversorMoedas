@@ -1,4 +1,4 @@
 export enum TypeBuy {
-    MONEY = "DINHEIRO",
-    CARD = "CARTAO",
+    MONEY = "dinheiro",
+    CARD = "cartão",
 }

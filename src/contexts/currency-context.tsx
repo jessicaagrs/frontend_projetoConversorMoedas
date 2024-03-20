@@ -3,14 +3,16 @@ import { TypeBuy } from "@/enums/type-buy";
 import { createContext, useState } from "react";
 
 export const CurrencyContext = createContext({
-    exchangeRate: 0,
     updateDate: '',
     dollarValue: '',
     typeBuy: TypeBuy.MONEY,
-    setExchangeRate: (value: number) => { },
+    stateFee: 0,
+    dollarRate: 0,
     setUpdateDate: (value: string) => { },
     setDollarValue: (value: string) => { },
-    setTypeBuy: (value: TypeBuy) => { }
+    setTypeBuy: (value: TypeBuy) => { },
+    setStateFee: (value: number) => { },
+    setDollarRate: (value: number) => { }
 });
 
 interface ProviderProps {
@@ -18,21 +20,24 @@ interface ProviderProps {
 }
 
 export function CurrencyContextProvider({ children }: ProviderProps) {
-    const [exchangeRate, setExchangeRate] = useState(0);
     const [updateDate, setUpdateDate] = useState('');
     const [dollarValue, setDollarValue] = useState('');
     const [typeBuy, setTypeBuy] = useState(TypeBuy.MONEY);
+    const [stateFee, setStateFee] = useState(8.19);
+    const [dollarRate, setDollarRate] = useState(0);
 
     return (
         <CurrencyContext.Provider value={{
-            exchangeRate,
             updateDate,
             dollarValue,
             typeBuy,
-            setExchangeRate,
+            stateFee,
+            dollarRate,
             setUpdateDate,
             setDollarValue,
-            setTypeBuy
+            setTypeBuy,
+            setStateFee,
+            setDollarRate
         }}>
             {children}
         </CurrencyContext.Provider>

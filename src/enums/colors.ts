@@ -6,5 +6,6 @@ export enum Colors {
     SHADOW = '#EBECED',
     TEXT_VALUE_INPUT = '#8C9CAD',
     BACKGROUND_BUTTON = '#008B57',
-    BORDER_BUTTON = '#00AB63'
+    BORDER_BUTTON = '#00AB63',
+    TEXT_DESCRIPTION = '#6E7E90'
 }

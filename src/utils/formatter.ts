@@ -1,9 +1,12 @@
-export function FormatterNumberInReal(value: number | undefined) {
-  if (value) {
-    return value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
+export function FormatterNumberInPercentage(value: number | undefined) {
+  if (value !== undefined && !isNaN(value)) {
+    const formattedValue = ((value * 100) / 100).toLocaleString("pt-BR", {
+      style: "decimal",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
+
+    return `${formattedValue.replace(".", ",")} %`;
   }
 
   return "";
@@ -54,6 +57,27 @@ export function FormatData(dateValue: string) {
     }${minutos} UTC`;
 
     return dataFormatada;
+  }
+
+  return "";
+}
+
+export function FormatStringInNumber(value: string) {
+  if (value != "") {
+    const valueNumber = parseFloat(value.replace("$", "").replace(",", "."));
+
+    return valueNumber;
+  }
+
+  return 0;
+}
+
+export function FormatterNumberInReal(value: number | undefined) {
+  if (value) {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
   }
 
   return "";

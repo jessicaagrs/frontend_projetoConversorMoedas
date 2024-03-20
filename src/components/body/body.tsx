@@ -5,6 +5,7 @@ import image from "../../../public/Mask.png";
 import { useCurrencyData } from "@/hooks/useCurrencyData";
 import { useEffect } from "react";
 import useCurrency from "@/hooks/useCurrency";
+import { Suspense } from "react";
 
 const BodyBackground = styled.body`
     background-image: url(${image.src});
@@ -17,19 +18,27 @@ const BodyBackground = styled.body`
 `;
 
 export default function Body(props: { children: React.ReactNode; }) {
-    const { data } = useCurrencyData();
-    const { setUpdateDate, setExchangeRate } = useCurrency();
+    const { data, isError } = useCurrencyData();
+    const { setUpdateDate, setDollarRate } = useCurrency();
 
     useEffect(() => {
         if (data) {
             setUpdateDate(data.USDBRL.create_date);
-            setExchangeRate(Number(data.USDBRL.ask));
+            setDollarRate(Number(data.USDBRL.ask));
         }
     }, [data]);
 
+    try {
+        if (isError) throw new Error("Houve uma falha ao buscar os dados. Entre em contato com suporte ou tente novamente mais tarde.");
+    } catch (error: any) {
+        alert(error.message);
+    }
+
     return (
-        <BodyBackground>
-            {props.children}
-        </BodyBackground>
+        <Suspense fallback={<div>Carregando...</div>}>
+            <BodyBackground>
+                {props.children}
+            </BodyBackground>
+        </Suspense>
     );
 };

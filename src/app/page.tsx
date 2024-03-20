@@ -4,9 +4,10 @@ import { ButtonConverterIcon } from "@/components/formDollar/converter-button-ic
 import FilterTypeBuy from "@/components/formDollar/filter-type-buy";
 import { Colors } from "@/enums/colors";
 import useCurrency from "@/hooks/useCurrency";
-import { FormatterNumberInReal, MaskCurrencyInDollar } from "@/utils/formatter";
+import { FormatterNumberInPercentage, MaskCurrencyInDollar } from "@/utils/formatter";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
+import { Suspense } from "react";
 
 const SectionInputValues = styled.section`
   display: flex;
@@ -75,7 +76,7 @@ const Button = styled.button`
 
 export default function Home() {
   const router = useRouter();
-  const { exchangeRate, dollarValue, setDollarValue } = useCurrency();
+  const { dollarValue, setDollarValue, stateFee } = useCurrency();
 
   const handleConverterClick = () => {
     try {
@@ -90,23 +91,25 @@ export default function Home() {
 
   return (
     <main>
-      <SectionInputValues>
-        <Container>
-          <Label htmlFor="textInputDollar">Dólar</Label>
-          <Input type="text" name="textInputDollar" readOnly={false} value={dollarValue} onChange={(e) => setDollarValue(MaskCurrencyInDollar(e.target.value, "dollar"))} />
-        </Container>
-        <Container>
-          <Label htmlFor="textInputTax">Taxa de Câmbio</Label>
-          <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumberInReal(exchangeRate)} />
-        </Container>
-      </SectionInputValues>
-      <section>
-        <FilterTypeBuy />
-      </section>
-      <Button onClick={handleConverterClick}>
-        <ButtonConverterIcon />
-        Converter
-      </Button>
+      <Suspense fallback={<div>Carregando...</div>}>
+        <SectionInputValues>
+          <Container>
+            <Label htmlFor="textInputDollar">Dólar</Label>
+            <Input type="text" name="textInputDollar" readOnly={false} value={dollarValue} onChange={(e) => setDollarValue(MaskCurrencyInDollar(e.target.value, "dollar"))} />
+          </Container>
+          <Container>
+            <Label htmlFor="textInputTax">Taxa do Estado</Label>
+            <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumberInPercentage(stateFee)} />
+          </Container>
+        </SectionInputValues>
+        <section>
+          <FilterTypeBuy />
+        </section>
+        <Button onClick={handleConverterClick}>
+          <ButtonConverterIcon />
+          Converter
+        </Button>
+      </Suspense>
     </main>
   );
 }
