@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Colors } from "@/enums/colors";
 import useCurrency from "@/hooks/useCurrency";
 import { FormatData } from "@/utils/formatter";
-import { Suspense } from "react";
 
 const SpanDate = styled.span`
     font-size: 18px;
@@ -53,12 +52,10 @@ export default function NavBar() {
     return (
         <Nav>
             <LogoNavBar />
-            <Suspense fallback={<div>Carregando...</div>}>
                 <NavContainer>
                     <SpanDate>{currentDate}</SpanDate>
                     <SpanMessage>Dados de câmbio disponibilizados pela Morningstar.</SpanMessage>
                 </NavContainer>
-            </Suspense>
         </Nav>
     );
 }

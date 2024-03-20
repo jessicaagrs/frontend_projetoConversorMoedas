@@ -7,7 +7,6 @@ import useCurrency from "@/hooks/useCurrency";
 import { FormatterNumberInPercentage, MaskCurrencyInDollar } from "@/utils/formatter";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
-import { Suspense } from "react";
 
 const SectionInputValues = styled.section`
   display: flex;
@@ -100,7 +99,7 @@ export default function Home() {
 
   const handleConverterClick = () => {
     try {
-      //if (dollarValue === '') throw new Error('Por favor, informe o valor em dólar para converter.');
+      if (dollarValue === '') throw new Error('Por favor, informe o valor em dólar para converter.');
 
       router.push("/result");
 
@@ -111,25 +110,23 @@ export default function Home() {
 
   return (
     <main>
-      <Suspense fallback={<div>Carregando...</div>}>
-        <SectionInputValues>
-          <Container>
-            <Label htmlFor="textInputDollar">Dólar</Label>
-            <Input type="text" name="textInputDollar" readOnly={false} value={dollarValue} onChange={(e) => setDollarValue(MaskCurrencyInDollar(e.target.value, "dollar"))} />
-          </Container>
-          <Container>
-            <Label htmlFor="textInputTax">Taxa do Estado</Label>
-            <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumberInPercentage(stateFee)} />
-          </Container>
-        </SectionInputValues>
-        <section>
-          <FilterTypeBuy />
-        </section>
-        <Button onClick={handleConverterClick}>
-          <ButtonConverterIcon />
-          Converter
-        </Button>
-      </Suspense>
+      <SectionInputValues>
+        <Container>
+          <Label htmlFor="textInputDollar">Dólar</Label>
+          <Input type="text" name="textInputDollar" readOnly={false} value={dollarValue} onChange={(e) => setDollarValue(MaskCurrencyInDollar(e.target.value, "dollar"))} />
+        </Container>
+        <Container>
+          <Label htmlFor="textInputTax">Taxa do Estado</Label>
+          <Input type="text" name="textInputTax" readOnly={true} value={FormatterNumberInPercentage(stateFee)} />
+        </Container>
+      </SectionInputValues>
+      <section>
+        <FilterTypeBuy />
+      </section>
+      <Button onClick={handleConverterClick}>
+        <ButtonConverterIcon />
+        Converter
+      </Button>
     </main>
   );
 }

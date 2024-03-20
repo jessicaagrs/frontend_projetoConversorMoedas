@@ -5,7 +5,6 @@ import image from "../../../public/Mask.png";
 import { useCurrencyData } from "@/hooks/useCurrencyData";
 import { useEffect } from "react";
 import useCurrency from "@/hooks/useCurrency";
-import { Suspense } from "react";
 
 const BodyBackground = styled.body`
     background-image: url(${image.src});
@@ -39,10 +38,8 @@ export default function Body(props: { children: React.ReactNode; }) {
     }
 
     return (
-        <Suspense fallback={<div>Carregando...</div>}>
-            <BodyBackground>
-                {props.children}
-            </BodyBackground>
-        </Suspense>
+        <BodyBackground>
+            {props.children}
+        </BodyBackground>
     );
 };
