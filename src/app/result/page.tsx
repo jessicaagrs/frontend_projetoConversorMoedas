@@ -12,6 +12,11 @@ const Title = styled.h1`
     line-height: 32px;
     font-weight: 600;
     color: ${Colors.TEXT};
+
+    @media (max-width: 384px) {
+        font-size: 15px;
+        line-height: 28px;
+    }
 `;
 
 const Container = styled.div`
@@ -26,6 +31,11 @@ const TextResult = styled.p`
     font-weight: 600;
     line-height: 80px;
     color: ${Colors.BORDER_BUTTON};
+
+    @media (max-width: 384px) {
+        font-size: 40px;
+        line-height: 44px;
+    }
 `;
 
 const TextDescriptionResult = styled.span`
@@ -33,6 +43,11 @@ const TextDescriptionResult = styled.span`
     line-height: 32px;
     font-weight: 500;
     color: ${Colors.TEXT_DESCRIPTION};
+
+    @media (max-width: 384px) {
+        font-size: 12px;
+        line-height: 24px;
+    }
 `;
 
 const TextDetailDescriptionResult = styled.span`
@@ -40,6 +55,11 @@ const TextDetailDescriptionResult = styled.span`
     line-height: 32px;
     font-weight: 400;
     color: ${Colors.TEXT_VALUE_INPUT};
+
+    @media (max-width: 384px) {
+        font-size: 11px;
+        line-height: 24px;
+    }
 `;
 
 

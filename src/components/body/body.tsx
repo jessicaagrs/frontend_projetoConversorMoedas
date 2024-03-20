@@ -15,6 +15,10 @@ const BodyBackground = styled.body`
     height: 100vh;
     overflow: hidden;
     margin-left: 5rem;
+
+    @media (max-width: 415px) {
+        margin-left: 1rem;
+    }
 `;
 
 export default function Body(props: { children: React.ReactNode; }) {

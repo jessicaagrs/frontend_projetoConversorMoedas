@@ -12,6 +12,11 @@ const SpanDate = styled.span`
     font-weight: 500;
     line-height: 24px;
     color: ${Colors.TEXT};
+
+    @media (max-width: 415px) {
+        font-size: 16px;
+        line-height: 20px;
+    }
 `;
 
 const SpanMessage = styled.span`
@@ -26,6 +31,12 @@ const Nav = styled.nav`
     gap: 48px;
     align-items: center;
     margin: 3.5rem 0;
+
+    @media (max-width: 415px) {
+        flex-direction: column;
+        gap: 16px;
+        margin: 1.5rem 0;
+    }
 `;
 
 const NavContainer = styled.div`

@@ -25,6 +25,11 @@ const Label = styled.label`
     line-height: 21px;
     font-weight: 500;
     color: ${Colors.TEXT_LABEL_INPUT};
+
+    @media (max-width: 415px) {
+        font-size: 16px;
+        line-height: 20px;
+    }
 `;
 
 const Input = styled.input`
@@ -52,6 +57,14 @@ const Input = styled.input`
             color: ${Colors.TEXT_LABEL_INPUT};
         }
     `}
+
+    @media (max-width: 415px) {
+        width: 140px;
+        height: 36px;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0.8rem;
+    }
 `;
 
 const Button = styled.button`
@@ -72,6 +85,13 @@ const Button = styled.button`
       background-color: ${Colors.TEXT_VALUE_INPUT};
       border: 1px solid ${Colors.BACKGROUND_BUTTON};
     }
+
+    @media (max-width: 320px) {
+        height: 35px;
+        width: 110px;
+        font-size: 12px;
+        margin-top: 1rem;
+    }
 `;
 
 export default function Home() {
@@ -80,7 +100,7 @@ export default function Home() {
 
   const handleConverterClick = () => {
     try {
-      if (dollarValue === '') throw new Error('Por favor, informe o valor em dólar para converter.');
+      //if (dollarValue === '') throw new Error('Por favor, informe o valor em dólar para converter.');
 
       router.push("/result");
 

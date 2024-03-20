@@ -28,6 +28,13 @@ const Button = styled.button`
     &:hover {
         background-color: ${Colors.BORDER};
     }
+
+    @media (max-width: 384px) {
+        width: 110px;
+        height: 36px;
+        font-size: 12px;
+        line-height: 20px;
+    }
 `;
 
 export default function ButtonPreview() {
