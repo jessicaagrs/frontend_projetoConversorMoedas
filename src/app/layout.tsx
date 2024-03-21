@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import Body from "@/components/body/body";
 import NavBar from "@/components/navbar/navbar";
 import DefaultProvider from "@/contexts/default-provider";
+import GlobalStyles from "@/styles/styleGlobal";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -18,20 +17,20 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <DefaultProvider>
-      <html lang="pt-Br" className={roboto.className}>
-        <Body>
+    <html lang="pt-Br">
+      <DefaultProvider>
+        <GlobalStyles />
+        <body className={roboto.className}>
           <NavBar />
           {children}
-        </Body>
-      </html>
-    </DefaultProvider>
+        </body>
+      </DefaultProvider>
+    </html>
   );
 }

@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { Colors } from "@/enums/colors";
 import useCurrency from "@/hooks/useCurrency";
 import { FormatData } from "@/utils/formatter";
+import { useCurrencyData } from "@/hooks/useCurrencyData";
+import { useEffect } from "react";
 
 const SpanDate = styled.span`
     font-size: 18px;
@@ -45,17 +47,31 @@ const NavContainer = styled.div`
 `;
 
 export default function NavBar() {
-    const { updateDate } = useCurrency();
+    const { data, isError } = useCurrencyData();
+    const { setUpdateDate, setDollarRate, updateDate } = useCurrency();
+
+    useEffect(() => {
+        if (data) {
+            setUpdateDate(data.USDBRL.create_date);
+            setDollarRate(Number(data.USDBRL.ask));
+        }
+    }, [data, setDollarRate, setUpdateDate]);
+
+    try {
+        if (isError) throw new Error("Houve uma falha ao buscar os dados. Entre em contato com suporte ou tente novamente mais tarde.");
+    } catch (error: any) {
+        alert(error.message);
+    }
 
     const currentDate = FormatData(updateDate);
 
     return (
         <Nav>
             <LogoNavBar />
-                <NavContainer>
-                    <SpanDate>{currentDate}</SpanDate>
-                    <SpanMessage>Dados de câmbio disponibilizados pela Morningstar.</SpanMessage>
-                </NavContainer>
+            <NavContainer>
+                <SpanDate>{currentDate}</SpanDate>
+                <SpanMessage>Dados de câmbio disponibilizados pela Morningstar.</SpanMessage>
+            </NavContainer>
         </Nav>
     );
 }
