@@ -28,9 +28,8 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 
 ## Descrição do projeto :pencil:
 
-<p align="justify">
- Projeto baseado no desafio da Stone [Ver mais](https://github.com/stone-payments/template-desafio-web). É uma aplicação web para conversão de valor em dólar para real.
-</p>
+ Projeto baseado no desafio da Stone [VER MAIS](https://github.com/stone-payments/template-desafio-web/). É uma aplicação web para conversão de valor em dólar para real.
+
 
 ## Funcionalidades :wrench:
 
